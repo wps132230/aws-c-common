@@ -22,7 +22,7 @@
 #include <memory.h>
 
 #ifdef _WIN32
-#include <winsock2.h>
+#include <windows.h>
 #else
 #include <netinet/in.h>
 #endif /*_WIN32 */

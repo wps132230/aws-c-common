@@ -48,3 +48,7 @@ int aws_mutex_unlock(struct aws_mutex *mutex) {
     ReleaseSRWLockExclusive(&mutex->mutex_handle);
     return AWS_OP_SUCCESS;
 }
+
+#if _MSC_VER
+#pragma warning(pop)
+#endif /* _MSC_VER */

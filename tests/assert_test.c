@@ -11,6 +11,14 @@ FILE *test_filedes;
 #define NO_MORE_TESTS 12345
 #define BAILED_OUT 98765
 
+#ifdef _MSC_VER 
+#pragma warning( push )
+/* turn off unused named parameter warning on msvc.*/
+#pragma warning( disable : 4100)
+/* turn off "this function or variable may be unsafe" warning on msvc.*/
+#pragma warning( disable : 4996)
+#endif
+
 const char *test_filename;
 int cur_line;
 int expected_return;
@@ -260,3 +268,7 @@ int main(int argc, char **argv) {
 
     return 0;
 }
+
+#if _MSC_VER
+#pragma warning(pop)
+#endif /* _MSC_VER */

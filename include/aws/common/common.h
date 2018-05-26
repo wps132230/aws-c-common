@@ -134,6 +134,10 @@ typedef enum aws_common_error {
 
 #define AWS_LIB_NAME "libaws-c-common"
 
+#if defined(_MSC_VER) && defined(_WIN32)
+#define AWS_ENABLE_HW_OPTIMIZATION 0
+#else
 #define AWS_ENABLE_HW_OPTIMIZATION 1
+#endif
 
 #endif /* AWS_COMMON_H_ */

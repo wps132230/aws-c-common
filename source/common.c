@@ -95,3 +95,7 @@ void aws_load_error_strings(void) {
         aws_register_error_info(&list);
     }
 }
+
+#if _MSC_VER
+#pragma warning(pop)
+#endif /* _MSC_VER */

@@ -382,7 +382,7 @@ static int expand_table(struct aws_common_hash_table *map) {
         return aws_raise_error(AWS_ERROR_OOM);
     }
 
-    for (int i = 0; i < old_state->size; i++) {
+    for (size_t i = 0; i < old_state->size; i++) {
         struct hash_table_entry entry = old_state->slots[i];
         if (entry.hash_code) {
             /* We can directly emplace since we know we won't put the same item twice */
@@ -524,7 +524,7 @@ int aws_common_hash_table_foreach(struct aws_common_hash_table *map,
     struct hash_table_state *state = map->pImpl;
     size_t limit = state->size;
 
-    for (int i = 0; i < limit; i++) {
+    for (size_t i = 0; i < limit; i++) {
         struct hash_table_entry *entry = &state->slots[i];
 
         if (!entry->hash_code) {
@@ -534,7 +534,7 @@ int aws_common_hash_table_foreach(struct aws_common_hash_table *map,
         int rv = callback(baton, &entry->element);
 
         if (rv & AWS_COMMON_HASH_TABLE_ITER_DELETE) {
-            int last_index = remove_entry(state, entry);
+            size_t last_index = remove_entry(state, entry);
             /* Removing an entry will shift back subsequent elements,
              * so we must revisit this slot.
              */
